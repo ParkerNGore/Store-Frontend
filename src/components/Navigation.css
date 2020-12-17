@@ -1,0 +1,22 @@
+nav {
+  border: black 1px solid;
+  display: flex;
+  justify-content: space-between;
+  background-color: #c4c4c4;
+}
+
+.left-nav {
+  width: 50%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.right-nav {
+  width: 50%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+a {
+  margin: 5 5 5 5;
+}
