@@ -18,7 +18,7 @@ function Navigation() {
           Audit Log
         </a>
         <a
-          href={loggedIn ? "/login" : `/${loggedInUserProfile}`}
+          href={loggedIn ? `/${loggedInUserProfile}` : "/login"}
           className="home-nav"
         >
           {loggedIn ? "User Profile" : "Login"}
