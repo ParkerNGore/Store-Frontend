@@ -3,7 +3,7 @@ import Navigation from "../components/Navigation";
 import "./Login.css";
 import { userLogin } from "../UserService";
 
-function Login() {
+function Login({ userId, token, updateToken }) {
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
 
@@ -15,13 +15,25 @@ function Login() {
       password,
     };
 
-    userLogin(user);
+    userLogin(user)
+      .then((res) => {
+        const authToken = res.headers.auth;
+        const userId = res.data._id;
+
+        localStorage.setItem("auth", authToken);
+        localStorage.setItem("userId", userId);
+
+        updateToken();
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   }
 
   return (
     <main className="login-page">
       <header>Login</header>
-      <Navigation />
+      <Navigation userId={userId} token={token} />
 
       <form onSubmit={handleLogin} className="login-form">
         <label>

@@ -8,15 +8,27 @@ import Store from "../containers/Store";
 import AuditLog from "../containers/AuditLog";
 import UserProfile from "../containers/UserProfile";
 
-function RoutesComponent({ userId, token, updateToken }) {
+function RoutesComponent({ user, userId, token, updateToken }) {
   return (
     <Router>
-      <Route exact path="/" component={HomePage} />
-      <Route exact path="/login" component={Login} />
-      <Route exact path="/userprofile/:userId" component={UserProfile} />
-      <Route exact path="/resetpassword" component={ResetPassword} />
-      <Route exact path="/store" component={Store} />
-      <Route exact path="/auditlog" component={AuditLog} />
+      <Route exact path="/">
+        <HomePage userId={userId} token={token} />
+      </Route>
+      <Route exact path="/login">
+        <Login userId={userId} token={token} updateToken={updateToken} />
+      </Route>
+      <Route exact path="/resetpassword">
+        <ResetPassword userId={userId} token={token} />
+      </Route>
+      <Route exact path="/userprofile/:userId">
+        <UserProfile user={user} userId={userId} token={token} />
+      </Route>
+      <Route exact path="/store">
+        <Store userId={userId} token={token} />
+      </Route>
+      <Route exact path="/auditlog">
+        <AuditLog userId={userId} token={token} />
+      </Route>
     </Router>
   );
 }

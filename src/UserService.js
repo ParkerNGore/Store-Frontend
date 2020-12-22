@@ -27,14 +27,7 @@ const deleteUser = (userId) => {
 };
 
 const userLogin = (user) => {
-  return axios
-    .post(`${BASE_URL}/api/users/login`, user)
-    .then((res) => {
-      console.log(res);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  return axios.post(`${BASE_URL}/api/users/login`, user);
 };
 
 export {

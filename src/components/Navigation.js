@@ -1,7 +1,21 @@
 import React from "react";
 import "./Navigation.css";
 
-function Navigation() {
+function Navigation({ userId, token }) {
+  const [loggedIn, setLoggedIn] = React.useState(false);
+  const [loggedInUserProfile, setLoggedInUserProfile] = React.useState(`/`);
+
+  React.useEffect(() => {
+    if (userId && token && loggedIn === false) {
+      setLoggedIn(true);
+      setLoggedInUserProfile(`/userprofile/${userId}`);
+    }
+    if (!userId || (!token && loggedIn === true)) {
+      setLoggedIn(false);
+      setLoggedInUserProfile(`/`);
+    }
+  }, [token, userId]);
+
   return (
     <nav>
       <div className="left-nav">
